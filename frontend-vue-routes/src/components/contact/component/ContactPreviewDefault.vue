@@ -1,7 +1,7 @@
 <template>
-  <div class="container-sm p-4">
-    <h1 class="text-secondary">
+  <div class="container-sm p-4 bg-light">
+    <h3 class="font-weight-light">
         Selecione um equipamento para ver seus detalhes
-    </h1>
+    </h3>
   </div>
 </template>

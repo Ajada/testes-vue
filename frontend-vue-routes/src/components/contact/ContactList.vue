@@ -1,15 +1,15 @@
 <template>
   <div>
-    <div class="jumbotron">
-      <h1 class="font-weight-light">{{title}}</h1>
+    <div class="container-sm p-4 bg-light">
+      <h3 class="font-weight-light">{{title}}</h3>
     </div>
-    <div class="container">
-      <table class="table table-striped" v-if="user.length > 0">
+    <div class="d-flex justify-content-center">
+      <table class="w-75 table table-striped" v-if="user.length > 0">
         <thead>
           <tr>
             <th scope="col">TAG</th>
             <th scope="col">Nome</th>
-            <th scope="col">Data de registro</th>
+            <th scope="col">Status</th>
             <th scope="col">#</th>
           </tr>
         </thead>
@@ -22,8 +22,9 @@
       </table>
         <p v-else>nenhum registro cadastrado</p>
     </div>
-
-    <button @click="returnPage" class="btn btn-primary">Voltar</button>
+    <div class="container-sm p-4">
+      <button @click="returnPage" class="btn btn-primary">Voltar</button>
+    </div>
   </div>
 </template>
 
@@ -43,10 +44,10 @@ export default {
   data () {
     return {
       user: [
-        { id: 1, name: 'Plutão', email: 'plutão@gmail.com', desc: 'descrição exemplo para preencher a lacuna da tabela' },
-        { id: 2, name: 'Jupiter', email: 'jup@gmail.com', desc: 'descrição exemplo para preencher a lacuna da tabela' },
-        { id: 3, name: 'Saturno', email: 'saturno@gmail.com', desc: 'descrição exemplo para preencher a lacuna da tabela' },
-        { id: 4, name: 'Netuno', email: 'ne@gmail.com', desc: 'descrição exemplo para preencher a lacuna da tabela' }
+        { id: 1, name: 'Plutão', status: 'não locado', desc: 'descrição exemplo para preencher a lacuna da tabela' },
+        { id: 2, name: 'Jupiter', status: 'locado', desc: 'descrição exemplo para preencher a lacuna da tabela' },
+        { id: 3, name: 'Saturno', status: 'perdido', desc: 'descrição exemplo para preencher a lacuna da tabela' },
+        { id: 4, name: 'Netuno', status: 'vencido', desc: 'descrição exemplo para preencher a lacuna da tabela' }
       ]
     }
   },
@@ -57,7 +58,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

@@ -6,6 +6,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    alias: '/home',
     name: 'home',
     component: () => import('../views/HomeView.vue')
   },
@@ -19,9 +20,6 @@ const routes = [
     name: 'about',
     component: () => import('../views/about/AboutView.vue')
   },
-  /** ROTA ANINHADA
-   * COMO A ROTA CONTACT É UMA ROTA ANINHADA PRECISAMOS DEFINIR UM <router-view /> DENTRO DOP COMPONENT PAI, NESSE CASO O ContactView.vue
-   */
   {
     path: '/contact',
     name: 'contact',
@@ -33,11 +31,29 @@ const routes = [
         component: () => import('@/views/contact/ContactDetailsView.vue')
       },
       {
+        path: ':id/edit',
+        name: 'contact-edit',
+        components: {
+          default: () => import('@/views/contact/ContactDetailsView.vue'),
+          'component-edit': () => import('@/components/contact/component/ContactEdit.vue')
+        }
+      },
+      {
         path: '',
         name: 'default-preview-details',
         component: () => import('@/components/contact/component/ContactPreviewDefault.vue')
       }
     ]
+  },
+  {
+    path: '/*/*',
+    name: 'error_400',
+    component: () => import('@/components/404/home/HomeView404')
+  },
+  {
+    path: '*',
+    name: 'error_404',
+    component: () => import('@/components/404/home/HomeView404')
   }
 ]
 

@@ -1,6 +1,7 @@
 <template>
     <div>
       <ContactList />
+      <router-view name="component-edit"></router-view>
       <router-view></router-view>
     </div>
 </template>

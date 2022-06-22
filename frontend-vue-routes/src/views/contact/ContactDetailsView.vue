@@ -1,8 +1,16 @@
 <template>
-  <div class="jumbotron">
-    <h1 class="font-height-light">Historico de locação</h1>
-    <p>ID: {{ id }}</p>
-    <button @click="returnPage" class="btn btn-primary">Voltar</button>
+  <div>
+    <div class="container-sm p-4 bg-light">
+      <h3 class="font-height-light">Historico de locação</h3>
+    </div>
+    <div class="container-sm p-2">
+      <div class="container p-4 border rounded">
+        <p>ID: {{ id }}</p>
+      </div>
+    </div>
+    <div class="container p-4">
+      <router-link :to="`/contact/${id}/edit`" class="btn btn-primary">Editar</router-link>
+    </div>
   </div>
 </template>
 
