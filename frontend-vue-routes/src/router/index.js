@@ -8,17 +8,17 @@ const routes = [
     path: '/',
     alias: '/home',
     name: 'home',
-    component: () => import('../views/HomeView.vue')
+    component: () => import('@/views/HomeView.vue')
   },
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: () => import('../views/dashboard/DashView.vue')
+    component: () => import('@/views/dashboard/DashView.vue')
   },
   {
     path: '/about',
     name: 'about',
-    component: () => import('../views/about/AboutView.vue')
+    component: () => import('@/views/about/AboutView.vue')
   },
   {
     path: '/contact',
@@ -31,19 +31,16 @@ const routes = [
         component: () => import('@/views/contact/ContactDetailsView.vue')
       },
       {
-        path: ':id/edit',
-        name: 'contact-edit',
-        components: {
-          default: () => import('@/views/contact/ContactDetailsView.vue'),
-          'component-edit': () => import('@/components/contact/component/ContactEdit.vue')
-        }
-      },
-      {
         path: '',
         name: 'default-preview-details',
         component: () => import('@/components/contact/component/ContactPreviewDefault.vue')
       }
     ]
+  },
+  {
+    path: '/contact/:id/edit',
+    name: 'contact-edit',
+    component: () => import('@/components/contact/component/ContactEdit.vue')
   },
   {
     path: '/*/*',
