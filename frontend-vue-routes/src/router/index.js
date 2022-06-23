@@ -22,13 +22,13 @@ const routes = [
   },
   {
     path: '/contact',
-    name: 'contact',
+    // name: 'contact',
     component: () => import('@/views/contact/ContactView.vue'),
     children: [
       {
         path: ':id',
         name: 'contact-details',
-        component: () => import('@/views/contact/ContactDetailsView.vue')
+        component: () => import('@/components/contact/component/ContactDetailsView.vue')
       },
       {
         path: '',
@@ -40,6 +40,7 @@ const routes = [
   {
     path: '/contact/:id/edit',
     name: 'contact-edit',
+    props: true,
     component: () => import('@/components/contact/component/ContactEdit.vue')
   },
   {
@@ -59,6 +60,15 @@ const routerMode = new VueRouter({
   linkExactActiveClass: 'selected',
   base: process.env.BASE_URL,
   routes
+})
+
+routerMode.beforeEach((to, from, next) => {
+  console.log('beforeEach')
+  next()
+})
+
+routerMode.afterEach((to, from) => {
+  console.log('afterEach')
 })
 
 export default routerMode

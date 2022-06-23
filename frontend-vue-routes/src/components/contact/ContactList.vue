@@ -3,8 +3,11 @@
     <div class="container-sm p-4 bg-light">
       <h3 class="font-weight-light">{{title}}</h3>
     </div>
+    <div class="mt-2 d-flex justify-content-center form-group">
+        <input @keyup="searchRegister" type="search" class="w-50 form-control" placeholder="Buscar" :value="$route.query.name">
+      </div>
     <div class="d-flex justify-content-center">
-      <table class="w-75 table table-striped" v-if="user.length > 0">
+      <table class="w-75 table table-striped" v-if="filterRegister.length > 0">
         <thead>
           <tr>
             <th scope="col">TAG</th>
@@ -14,10 +17,7 @@
           </tr>
         </thead>
         <tbody>
-          <ContactListIten
-          v-for="users in user"
-          :key="users.id"
-          :dataUsers="users"/>
+          <ContactListIten v-for="users in filterRegister" :key="users.id" :dataUsers="users"/>
         </tbody>
       </table>
         <p v-else>nenhum registro cadastrado</p>
@@ -44,16 +44,30 @@ export default {
   data () {
     return {
       user: [
-        { id: 1, name: 'Plutão', status: 'não locado', desc: 'descrição exemplo para preencher a lacuna da tabela' },
-        { id: 2, name: 'Jupiter', status: 'locado', desc: 'descrição exemplo para preencher a lacuna da tabela' },
-        { id: 3, name: 'Saturno', status: 'perdido', desc: 'descrição exemplo para preencher a lacuna da tabela' },
-        { id: 4, name: 'Netuno', status: 'vencido', desc: 'descrição exemplo para preencher a lacuna da tabela' }
+        { id: 1, name: 'MD Técnica', status: 'não locado', desc: 'descrição exemplo para preencher a lacuna da tabela' },
+        { id: 2, name: 'DDeus', status: 'locado', desc: 'descrição exemplo para preencher a lacuna da tabela' },
+        { id: 3, name: 'DDeus', status: 'perdido', desc: 'descrição exemplo para preencher a lacuna da tabela' },
+        { id: 4, name: 'Engeman', status: 'vencido', desc: 'descrição exemplo para preencher a lacuna da tabela' }
       ]
+    }
+  },
+  computed: {
+    filterRegister () {
+      const query = this.$route.query.name
+      return !query
+        ? this.user
+        : this.user.filter(u => u.name.toLowerCase().includes(query.toLowerCase()))
     }
   },
   methods: {
     returnPage () {
       this.$router.back()
+    },
+    searchRegister (event) {
+      this.$router.push({
+        path: '/contact',
+        query: { name: event.target.value }
+      })
     }
   }
 }
