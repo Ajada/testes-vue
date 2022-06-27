@@ -11,6 +11,13 @@
     <div class="container p-4">
       <router-link :to="`/contact/${id}/edit`" class="btn btn-primary">Editar</router-link>
     </div>
+    <div>
+      <button
+        class="btn btn-primary mt-2"
+        @click="$router.back()">
+        Voltar
+      </button>
+    </div>
   </div>
 </template>
 

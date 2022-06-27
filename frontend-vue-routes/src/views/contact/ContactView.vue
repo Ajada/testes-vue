@@ -1,6 +1,6 @@
 <template>
     <div>
-      <ContactList />
+      <ContactList/>
       <router-view></router-view>
     </div>
 </template>

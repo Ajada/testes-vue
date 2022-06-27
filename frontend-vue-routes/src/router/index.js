@@ -1,12 +1,18 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import events from '@/Event'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    alias: '/home',
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login/LoginView.vue')
+  },
+  {
+    path: '/home',
+    alias: '/',
     name: 'home',
     component: () => import('@/views/HomeView.vue')
   },
@@ -22,12 +28,12 @@ const routes = [
   },
   {
     path: '/contact',
-    // name: 'contact',
     component: () => import('@/views/contact/ContactView.vue'),
     children: [
       {
         path: ':id',
         name: 'contact-details',
+        meta: { authenticate: true },
         component: () => import('@/components/contact/component/ContactDetailsView.vue')
       },
       {
@@ -63,12 +69,21 @@ const routerMode = new VueRouter({
 })
 
 routerMode.beforeEach((to, from, next) => {
-  console.log('beforeEach')
+  // const authenticated = events.auth
+  if (to.matched.some(rota => rota.meta.authenticate)) {
+    if (!events.auth) {
+      events.msg = 'Você não esta autenticado'
+      setInterval(() => {
+        events.msg = ''
+      }, 3000)
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
+      return
+    }
+  }
   next()
-})
-
-routerMode.afterEach((to, from) => {
-  console.log('afterEach')
 })
 
 export default routerMode
