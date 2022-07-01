@@ -40,10 +40,9 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '@/axios'
 import TarefaSalvar from '@/components/taskManager/taskSave.vue'
 import TarefaListaIten from '@/components/taskManager/taskIten.vue'
-import config from '@/config/config'
 
 export default {
   components: {
@@ -59,14 +58,16 @@ export default {
     }
   },
   created () {
-    axios.get(`${config.apiUrl}/tarefas`)
+    axios.get('/tarefas')
       .then((res) => {
         this.tarefas = res.data
+      }).catch(error => {
+        if (error.response) { this.response('Servidor retornou o status de erro: ' + error.response.status) }
       })
   },
   computed: {
     tarefaOrdenada () {
-      return this.tarefas.sort((task1, task2) => {
+      return this.tarefas.slice().sort((task1, task2) => {
         if (task1.status === task2.status) {
           return task1.title < task2.title
             ? -1
@@ -78,23 +79,26 @@ export default {
   },
   methods: {
     createNewTask (task) {
-      axios.post(`${config.apiUrl}/tarefas`, task)
-        .then(res => {
-          this.tarefas = res.data
-          this.response('Nova tarefa adicionada com sucesso')
-        })
+      axios.request({
+        method: 'post',
+        url: '/tarefas',
+        data: task
+      }).then(res => {
+        this.tarefas = res.data
+        this.response('Nova tarefa adicionada com sucesso')
+      })
       this.reset()
     },
     editTask (task) {
-      axios.put(`${config.apiUrl}/tarefas/${task.id}`, task)
+      axios.put('/tarefas/' + task.id, task)
         .then(res => {
           this.tarefas = res.data
-          this.response(`Tarefa ${task.id} editada com sucesso`)
+          this.response('Tarefa ' + task.id + ' editada com sucesso')
         })
       this.form = false
     },
     deleteTask (task) {
-      axios.delete(`${config.apiUrl}/tarefas/${task.id}`)
+      axios.delete(`/tarefas/${task.id}`)
         .then(res => {
           this.tarefas = res.data
           this.response('Tarefa deletada com sucesso')
