@@ -55,6 +55,7 @@ const routes = [
     component: () => import('@/components/404/home/HomeView404')
   },
   {
+
     path: '*',
     name: 'error_404',
     component: () => import('@/components/404/home/HomeView404')

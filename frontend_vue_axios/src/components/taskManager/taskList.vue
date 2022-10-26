@@ -57,13 +57,15 @@ export default {
       msg: ''
     }
   },
-  created () {
-    axios.get('/tarefas')
-      .then((res) => {
-        this.tarefas = res.data
-      }).catch(error => {
-        if (error.response) { this.response('Servidor retornou o status de erro: ' + error.response.status) }
-      })
+  async created () {
+    const res1 = await axios.get('/tarefas')
+    this.tarefas = res1.data
+    // axios.get('/tarefas')
+    //   .then((res) => {
+    //     this.tarefas = res.data
+    //   }).catch(error => {
+    //     if (error.response) { this.response('Servidor retornou o status de erro: ' + error.response.status) }
+    //   })
   },
   computed: {
     tarefaOrdenada () {

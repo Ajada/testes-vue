@@ -50,9 +50,7 @@ export default {
   computed: {
     filterRegister () {
       const query = this.$route.query.name
-      return !query
-        ? this.user
-        : this.user.filter(u => u.name.toLowerCase().includes(query.toLowerCase()))
+      return !query ? this.user : this.user.filter(u => u.name.toLowerCase().includes(query.toLowerCase()))
     }
   },
   created () {
