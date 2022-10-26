@@ -9,6 +9,7 @@
         <link rel="shortcut icon" href="{{ @asset('wolf.png') }}" type="image/x-icon">
 
         <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
+        <script src="https://js.pusher.com/beams/2.0.0-beta.1/push-notifications-cdn.js"></script>
         <script>
             const beamsClient = new PusherPushNotifications.Client({
                 instanceId: 'd2d9f267-9504-44cb-9fed-72373f22cb50',
