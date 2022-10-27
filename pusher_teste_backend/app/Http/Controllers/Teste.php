@@ -33,7 +33,7 @@ class Teste extends Controller
             "web" => 
                 [
                     "notification" => [
-                        "title" => $request->tile, 
+                        "title" => $request->title, 
                         "body" => $request->body
                     ]
                 ]
