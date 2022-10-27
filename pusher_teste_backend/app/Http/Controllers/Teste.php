@@ -25,12 +25,23 @@ class Teste extends Controller
      */
     public function create(Request $request)
     {
-        $req = Http::post('https://d2d9f267-9504-44cb-9fed-72373f22cb50.pushnotifications.pusher.com/publish_api/v1/instances/d2d9f267-9504-44cb-9fed-72373f22cb50/publishes', [
+        return response()->json($request);
+        dd(env('APP_NAME'));
+        $request = Http::withHeaders([
             'Authorization' => 'Bearer 17694F470EFE7A601DB5C6638E5FF788E70343B79F7F52A98FCC2E78CADB409F',
             'Content-Type' => 'application/json'
-        ], json_encode($request));
+        ])->post('https://d2d9f267-9504-44cb-9fed-72373f22cb50.pushnotifications.pusher.com/publish_api/v1/instances/d2d9f267-9504-44cb-9fed-72373f22cb50/publishes', [
+            "interests" => ["hello"],
+            "web" => 
+                [
+                    "notification" => [
+                        "title" => $request->tile, 
+                        "body" => $request->body
+                    ]
+                ]
+            ]);
 
-        return $req->body();
+        return dd($request->body());
     }
 
     /**
