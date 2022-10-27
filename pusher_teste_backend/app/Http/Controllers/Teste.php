@@ -25,12 +25,12 @@ class Teste extends Controller
      */
     public function create(Request $request)
     {
-        $request = Http::withHeaders([
+        $req = Http::withHeaders([
             'Authorization' => 'Bearer 17694F470EFE7A601DB5C6638E5FF788E70343B79F7F52A98FCC2E78CADB409F',
             'Content-Type' => 'application/json'
         ])->post('https://d2d9f267-9504-44cb-9fed-72373f22cb50.pushnotifications.pusher.com/publish_api/v1/instances/d2d9f267-9504-44cb-9fed-72373f22cb50/publishes', [$request]);
 
-        return response()->json(['success' => 'Message sent']);
+        return $req->body();
     }
 
     /**
