@@ -24,7 +24,20 @@ class Teste extends Controller
      */
     public function create()
     {
-        $request = Http::post('https://d2d9f267-9504-44cb-9fed-72373f22cb50.pushnotifications.pusher.com/publish_api/v1/instances/d2d9f267-9504-44cb-9fed-72373f22cb50/publishes');
+        $request = Http::withHeaders([
+            'Authorization' => 'Bearer 17694F470EFE7A601DB5C6638E5FF788E70343B79F7F52A98FCC2E78CADB409F',
+            'Content-Type' => 'application/json'
+        ])->post('https://d2d9f267-9504-44cb-9fed-72373f22cb50.pushnotifications.pusher.com/publish_api/v1/instances/d2d9f267-9504-44cb-9fed-72373f22cb50/publishes', [
+            "interests" => ["hello"],
+            "web" => json_encode(
+                [
+                    "notification" => [
+                        "title" => "Aviso", 
+                        "body" => "Você tem locações que vencem hoje !"
+                    ]
+                ]
+            )
+        ]);
 
         return dd($request->body());
     }
