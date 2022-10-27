@@ -25,8 +25,6 @@ class Teste extends Controller
      */
     public function create(Request $request)
     {
-        return response()->json($request);
-        dd(env('APP_NAME'));
         $request = Http::withHeaders([
             'Authorization' => 'Bearer 17694F470EFE7A601DB5C6638E5FF788E70343B79F7F52A98FCC2E78CADB409F',
             'Content-Type' => 'application/json'
@@ -41,7 +39,7 @@ class Teste extends Controller
                 ]
             ]);
 
-        return dd($request->body());
+        return $request->body();
     }
 
     /**
