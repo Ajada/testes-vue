@@ -29,15 +29,14 @@ class Teste extends Controller
             'Content-Type' => 'application/json'
         ])->post('https://d2d9f267-9504-44cb-9fed-72373f22cb50.pushnotifications.pusher.com/publish_api/v1/instances/d2d9f267-9504-44cb-9fed-72373f22cb50/publishes', [
             "interests" => ["hello"],
-            "web" => json_encode(
+            "web" => 
                 [
                     "notification" => [
                         "title" => "Aviso", 
                         "body" => "Você tem locações que vencem hoje !"
                     ]
                 ]
-            )
-        ]);
+            ]);
 
         return dd($request->body());
     }
