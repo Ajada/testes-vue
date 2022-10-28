@@ -28,7 +28,7 @@ class Teste extends Controller
         $request = Http::withHeaders([
             'Authorization' => 'Bearer 17694F470EFE7A601DB5C6638E5FF788E70343B79F7F52A98FCC2E78CADB409F',
             'Content-Type' => 'application/json'
-        ])->post('https://d2d9f267-9504-44cb-9fed-72373f22cb50.pushnotifications.pusher.com/publish_api/v1/instances/d2d9f267-9504-44cb-9fed-72373f22cb50/publishes', [
+        ])->post('https://32face0d-33c9-4a91-aeaf-eed0c6487b01.pushnotifications.pusher.com/publish_api/v1/instances/32face0d-33c9-4a91-aeaf-eed0c6487b01/publishes', [
             "interests" => ["hello"],
             "web" => 
                 [
