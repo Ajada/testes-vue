@@ -20,15 +20,13 @@ class Teste extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param 
-     * @return \Illuminate\Http\Response
+     * 
      */
     public function create(Request $request)
     {
-        dd($request);
         $notify = Http::withHeaders([
+            'Content-Type' => 'application/json',
             'Authorization' => 'Bearer 1441D694AB156CE0750BAFC1138CCD46CFB3A98C5E293ADE39953B568B1597CF',
-            'Content-Type' => 'application/json'
         ])->post(
             'https://32face0d-33c9-4a91-aeaf-eed0c6487b01.pushnotifications.pusher.com/publish_api/v1/instances/32face0d-33c9-4a91-aeaf-eed0c6487b01/publishes', 
             ["interests" => ["hello"],
