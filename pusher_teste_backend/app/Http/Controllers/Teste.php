@@ -25,11 +25,12 @@ class Teste extends Controller
      */
     public function create(Request $request)
     {
-        $request = Http::withHeaders([
+        $notify = Http::withHeaders([
             'Authorization' => 'Bearer 1441D694AB156CE0750BAFC1138CCD46CFB3A98C5E293ADE39953B568B1597CF',
             'Content-Type' => 'application/json'
-        ])->post('https://32face0d-33c9-4a91-aeaf-eed0c6487b01.pushnotifications.pusher.com/publish_api/v1/instances/32face0d-33c9-4a91-aeaf-eed0c6487b01/publishes', [
-            "interests" => ["hello"],
+        ])->post(
+            'https://32face0d-33c9-4a91-aeaf-eed0c6487b01.pushnotifications.pusher.com/publish_api/v1/instances/32face0d-33c9-4a91-aeaf-eed0c6487b01/publishes', 
+            ["interests" => ["hello"],
             "web" => 
                 [
                     "notification" => [
@@ -37,9 +38,13 @@ class Teste extends Controller
                         "body" => $request->body
                     ]
                 ]
-            ]);
-
-        return $request->body();
+            ]
+        );
+        // foreach(RentedEquipmentModel::all('end_rent') as $key => $value){
+        //     $date_rent_end[$key] = $value->end_rent;
+        //     if($date_rent_end[$key] <= Carbon::now()->toDateString())
+                return $notify->body();
+        // }
     }
 
     /**
