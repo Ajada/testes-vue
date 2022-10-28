@@ -25,6 +25,7 @@ class Teste extends Controller
      */
     public function create(Request $request)
     {
+        dd($request);
         $notify = Http::withHeaders([
             'Authorization' => 'Bearer 1441D694AB156CE0750BAFC1138CCD46CFB3A98C5E293ADE39953B568B1597CF',
             'Content-Type' => 'application/json'
